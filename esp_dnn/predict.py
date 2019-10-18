@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from __future__ import absolute_import
+
 
 from argparse import ArgumentParser
 from contextlib import contextmanager
@@ -148,8 +148,12 @@ class MolChargePredictor(object):
         self.featurizer = Featurize(features_file=features_file, pad_value=0.0)
         self.skip_norm_mask = np.array(
             [v.startswith("is_") for v in self.featurizer.features])
-        with open(norm_params_file) as f:
-            self.norm_params_dict = pickle.load(f)
+        #with open(norm_params_file) as f:
+        #    self.norm_params_dict = pickle.load(f)
+        with open(norm_params_file, 'rb') as f:
+            self.norm_params_dict = pickle.load(f, encoding='latin1')
+
+
         self.neutralizer = MolNeutralizer()
         self.equivalent_atoms = [(Chem.MolFromSmarts(ea[0]), ea[1])
                                  for ea in EQUIVALENT_ATOMS]
@@ -383,7 +387,7 @@ def run(mode, input_dir, output_dir, stop_on_error):
                 mcp.pdb_file2pqr_file(pdb_file, pqr_file)
             else:
                 protein_pdb_file2pqr_file(pdb_file, pqr_file)
-        except AIChargeError, e:
+        except AIChargeError as e:
             if stop_on_error:
                 raise
             else:

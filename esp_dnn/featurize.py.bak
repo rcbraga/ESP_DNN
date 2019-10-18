@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+from __future__ import absolute_import
 
 from argparse import ArgumentParser
 import logging
@@ -112,7 +112,7 @@ class Featurize(object):
              "D": (("mol_id", "atom_id", "atom_id"), np.stack(neighbor_arrays)),
              "SMILES": (("mol_id",), list(valid_smiles))},
             coords={"mol_id": valid_ids,
-                    "atom_id": list(range(self.max_hac)),
+                    "atom_id": range(self.max_hac),
                     "feature": self.features
                     })
 
