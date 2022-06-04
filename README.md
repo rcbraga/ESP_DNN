@@ -1,3 +1,9 @@
+# ESP-DNN for Colaboratory
+
+This repository contains a modified version of ESP-DNN to use it on Google colaboratory. 
+
+Originally, ESP-DNN used Python 2.7, which @iwatobipen modified to use Python 3. This repositry forked from iwatobipen's version and additionaly  environmet.yml was changed to fit for the settings.
+
 # ESP-DNN: A Graph-Convolutional Deep Neural Network for predicting electrostatic potential surfaces
 ![TOC](aux/toc.png)
 <br>This repository contains the trained models and code for generating [PQR files](https://apbs-pdb2pqr.readthedocs.io/en/latest/formats/pqr.html)
