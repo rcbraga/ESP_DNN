@@ -4,6 +4,14 @@ This repository contains a modified version of ESP-DNN to use it on Google colab
 
 Originally, ESP-DNN used Python 2.7, which @iwatobipen modified to use Python 3. This repositry forked from iwatobipen's version and additionaly  environmet.yml was changed to fit for the settings.
 
+Here is the settings:
+  - rdkit==2019.03.4
+  - keras==2.2.4
+  - tensorflow==1.14.0
+  - numpy==1.17.2
+  - python=3.7
+  - xarray==0.14.0
+
 # ESP-DNN: A Graph-Convolutional Deep Neural Network for predicting electrostatic potential surfaces
 ![TOC](aux/toc.png)
 <br>This repository contains the trained models and code for generating [PQR files](https://apbs-pdb2pqr.readthedocs.io/en/latest/formats/pqr.html)
