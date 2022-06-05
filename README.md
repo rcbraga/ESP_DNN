@@ -2,7 +2,7 @@
 
 This repository contains a modified version of ESP-DNN to use it on Google colaboratory. 
 
-Originally, ESP-DNN used Python 2.7, which @iwatobipen modified to use Python 3. This repositry forked from iwatobipen's version and additionaly  environmet.yml was changed to fit for the settings.
+Originally, ESP-DNN used Python 2.7, which @iwatobipen modified to use Python 3. This repositry is forked from iwatobipen's version and additionaly  environmet.yml was changed to fit for the adequate settings.
 
 Here is the settings:
   - rdkit==2019.03.4
