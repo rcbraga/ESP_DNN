@@ -17,8 +17,10 @@
 from keras import activations, initializers, regularizers, constraints
 from keras import backend as K
 from keras.constraints import min_max_norm
-from keras.engine.topology import Layer, InputSpec
-import tensorflow as tf
+from keras.layers import Layer, InputSpec
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+tf.compat.v1.disable_eager_execution()
 
 
 class PrintLayerInput(Layer):

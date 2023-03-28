@@ -1,0 +1,35 @@
+FROM  --platform=linux/arm64 python:3.9-slim-buster as stage-arm64
+# Commands run only for linux/arm64 target platform
+# Create app directory
+RUN mkdir /usr/insilicall/
+WORKDIR /usr/insilicall/
+
+#Add user 
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 vscode
+
+# # Update args in docker-compose.yaml to set the UID/GID of the "vscode" user.
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then groupmod --gid $USER_GID vscode && usermod --uid $USER_UID --gid $USER_GID vscode; fi
+
+RUN apt-get -qq update && apt-get install libxrender1 libarchive-dev build-essential git  liblapack-dev libblas-dev  gfortran  -y\
+    && apt-get -qq -y autoremove \
+    && apt-get autoclean \
+    && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log 
+
+# Bundle app source
+RUN mkdir -p ia 
+COPY * ./ia/
+
+RUN python3.9 -m pip install --no-cache-dir --upgrade pip setuptools wheel
+
+# Activate the first environment and install packages
+ENV PATH="/usr/insilicall/env1/bin:$PATH"
+RUN python3.9 -m pip install --no-cache-dir -r ia/requirements-esp3d-arch.txt
+
+# Run container as non-root
+USER 1000:1000
+
+# Set the default environment
+ENV PATH="/usr/insilicall/env1/bin:$PATH"
+

@@ -136,7 +136,8 @@ class MolChargePredictor(object):
                  debug=False,
                  clean_tmp_dir=True):
         # defer import until needed
-        import tensorflow as tf
+        import tensorflow.compat.v1 as tf
+        tf.disable_v2_behavior()
         from .model_factory import custom_load_model
 
         self.graph = tf.get_default_graph()

@@ -16,12 +16,14 @@
 import os
 from tempfile import mkstemp
 
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 from keras import Model
 import keras.backend as K
 from keras.layers import Dense, Input, Activation, SpatialDropout1D
 from keras.optimizers import Adam
 from keras.models import load_model
-import tensorflow as tf
 
 from .graph_conv import GraphConv
 
